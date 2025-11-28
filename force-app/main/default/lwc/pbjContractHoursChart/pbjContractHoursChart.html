@@ -1,0 +1,61 @@
+<template>
+    <lightning-card title="Contract Nurse Hours by Quarter" icon-name="custom:custom63">
+        <!-- Loading state -->
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium slds-text-body_regular">
+                Loading PBJ data...
+            </div>
+        </template>
+
+        <!-- Error state -->
+        <template if:true={error}>
+            <div class="slds-p-around_medium slds-text-color_error">
+                Unable to load PBJ staffing data.
+            </div>
+        </template>
+
+        <!-- Main chart -->
+        <template if:true={hasData}>
+            <div class="chart-container slds-p-around_medium">
+                <div class="chart-area">
+                    <div class="y-axis-label">Contractor Hours</div>
+
+                    <div class="bars-wrapper">
+                        <template for:each={chartData} for:item="q">
+                            <div key={q.quarter} class="bar-column">
+                                
+                                <div class="bar-total">{q.totalLabel}</div>
+
+                                <div class="bar-stack" title={q.totalHours}>
+                                    <div class="segment cna" style={q.cnaStyle}></div>
+                                    <div class="segment lpn" style={q.lpnStyle}></div>
+                                    <div class="segment rn" style={q.rnStyle}></div>
+                                </div>
+                                <div class="x-label">{q.quarter}</div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="legend">
+                    <span class="legend-item">
+                        <span class="legend-color cna"></span> CNA
+                    </span>
+                    <span class="legend-item">
+                        <span class="legend-color lpn"></span> LPN
+                    </span>
+                    <span class="legend-item">
+                        <span class="legend-color rn"></span> RN
+                    </span>
+                </div>
+            </div>
+        </template>
+
+        <!-- Empty state  -->
+        <template if:true={showEmpty}>
+            <div class="slds-p-around_medium slds-text-body_regular">
+                No PBJ contractor hours were found for this facility.
+            </div>
+        </template>
+    </lightning-card>
+</template>

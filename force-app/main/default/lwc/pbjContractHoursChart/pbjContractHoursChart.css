@@ -1,0 +1,90 @@
+.chart-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* percentages are based on this */
+.chart-area {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 220px;
+}
+
+.y-axis-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-right: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.bars-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+}
+
+.bar-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px;
+    margin: 0 8px;
+}
+
+.bar-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    height: 180px; /* fixed height so height:% works */
+}
+
+.segment {
+    width: 100%;
+}
+
+.segment.cna {
+    background-color: #1b96ff;
+}
+
+.segment.lpn {
+    background-color: #2ecc71;
+}
+
+.segment.rn {
+    background-color: #e74c3c;
+}
+
+.x-label {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.legend {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.legend-item {
+    margin-right: 1.5rem;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 0.25rem;
+}
+
+.legend-color.cna {
+    background-color: #1b96ff;
+}
+
+.legend-color.lpn {
+    background-color: #2ecc71;
+}
+
+.legend-color.rn {
+    background-color: #e74c3c;
+}
