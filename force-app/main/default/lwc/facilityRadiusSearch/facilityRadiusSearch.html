@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="Nearby Facilities" icon-name="custom:custom13">
+        <div class="slds-p-around_medium">
+
+            <!-- Controls -->
+            <div class="slds-grid slds-wrap slds-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-p-right_small">
+                    <lightning-input
+                        type="number"
+                        label="Radius (miles)"
+                        value={radius}
+                        min="1"
+                        step="1"
+                        onchange={handleRadiusChange}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-m-top_large">
+                    <lightning-button
+                        variant="brand"
+                        label="Find Facilities"
+                        onclick={handleSearch}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading nearby facilities" size="small"></lightning-spinner>
+            </template>
+
+            <!-- Error -->
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-m-vertical_small">
+                    {errorMessage}
+                </div>
+            </template>
+
+            <!-- Results -->
+            <template if:true={hasResults}>
+                <lightning-datatable
+                    key-field="id"
+                    data={results}
+                    columns={columns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+
+            <!-- Empty -->
+            <template if:true={showEmpty}>
+                <div class="slds-m-vertical_small">
+                    No facilities found within {radius} miles.
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
